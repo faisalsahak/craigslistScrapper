@@ -114,10 +114,10 @@ class CraigslistScrapper(object):
 
 # van areas => burnaby/newwest => "/bnc"  delta/surrey/langley => "/rds"  north Shore => "/nvn"
 # richmond => "/rch"   tricities/pitt/maple => "/pml"  vancouver => "/van"
-
+areas = ["/bnc", "/rds", "/nvn", "/rch", "/pml", "/van"]
 
 #for sale => sss, housing => hhh, jobs=> jjj, resume=> rrr,  services => bbb, , gigs => ggg,
-
+typeOfSearch =["sss", "hhh", "jjj", "rrr", "bbb", "ggg"]
 item = "5 bedroom"
 location = "vancouver"
 postal = "v3j2s1"
