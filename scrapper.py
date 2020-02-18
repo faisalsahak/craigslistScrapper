@@ -12,7 +12,7 @@ from bs4 import BeautifulSoup
 import urllib.request
 
 class CraigslistScrapper(object):
-	def __init__(self, location, item, postal=""
+	def __init__(self, location, item, postal="", radius="", max_price="", min_price="0", area="",typeOfSearch="sss", min_bedrooms=""): #parameters when creating the instance of the class
 		self.location = location
 		self.postal = postal
 		self.max_price = max_price
@@ -29,7 +29,14 @@ class CraigslistScrapper(object):
 			#search query by all the parameters
 			self.url = f"https://{location}.craigslist.org/search{area}/{typeOfSearch}?query={item}&search_distance={radius}&postal={postal}&min_price={min_price}&max_price={max_price}"
 
-		
+		elif postal == "" and radius== "":
+			print("============>>> elif running")
+			self.url = f"https://{location}.craigslist.org/search{area}/{typeOfSearch}?query={item}&min_price={min_price}&max_price={max_price}{min_bedrooms}"			
+		else:
+			print("============>>> else running")
+			self.url = f"https://{location}.craigslist.org/search{area}/{typeOfSearch}?query={item}&search_distance={radius}&postal={postal}&min_price={min_price}&max_price={max_price}"
+
+
 
 
 
