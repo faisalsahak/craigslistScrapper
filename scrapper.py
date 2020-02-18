@@ -53,4 +53,48 @@ class CraigslistScrapper(object):
 			print("Loading took too long") #if this is printed, increase the delay time above
 	
 
+	def extract_post_information(self):
+		all_posts = self.driver.find_elements_by_class_name("result-row")# gets all the items on the page that has the css class result-row
+		
+
+
+		# post_title_list = [] #stores all the page item titles in this list
+		for post in all_posts:
+			title = post.text.split("$")
+
+			if title[0] == '': #something the title is the first index, other times the second index
+				title = title[1]
+			else:
+				title = title[0]
+
+			title = title.split("\n") #spliting the title by the new line
+			price = title[0] #getting the price, which is the first element of the array
+			title = title[-1] #getting the title, which is the last element in the array
+			title = title.split(" ")
+
+			month = title[0]
+			day = title[1]
+			title = ' '.join(title[2:])
+			date = month + " " + day
+
+			# print("PRICE: " + price)
+			# print("TITLE: " + title)
+			# print("Date: " + date)
+			# int_price = int(price)
+			# print(type(int_price))
+			# if int_price < 5:
+			# 	continue
+
+			titles.append(title)
+			prices.append(price)
+			dates.append(date)
+
+		return titles, prices, dates
+
+
+		# return post_title_list
+
+
+
+
 	
