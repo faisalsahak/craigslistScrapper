@@ -56,7 +56,9 @@ class CraigslistScrapper(object):
 	def extract_post_information(self):
 		all_posts = self.driver.find_elements_by_class_name("result-row")# gets all the items on the page that has the css class result-row
 		
-
+		dates = []
+		titles = []
+		prices = []
 
 		# post_title_list = [] #stores all the page item titles in this list
 		for post in all_posts:
