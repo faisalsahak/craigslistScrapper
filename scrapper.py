@@ -99,4 +99,47 @@ class CraigslistScrapper(object):
 
 
 
-	
+	def extract_post_urls(self):
+		url_list = []
+		html_page = urllib.request.urlopen(self.url)
+		soup = BeautifulSoup(html_page, "lxml")
+		for link in soup.findAll("a", {"class": "result-title hdrlnk"}): #finds all the a tags that have the class "result-title hdrlnk"
+			print(link['href'])
+			url_list.append(link["href"])
+		return url_list
+
+
+	def quit(self):#closes the browser when finished loading the links
+		self.driver.close()
+
+# van areas => burnaby/newwest => "/bnc"  delta/surrey/langley => "/rds"  north Shore => "/nvn"
+# richmond => "/rch"   tricities/pitt/maple => "/pml"  vancouver => "/van"
+areas = ["/bnc", "/rds", "/nvn", "/rch", "/pml", "/van"]
+
+#for sale => sss, housing => hhh, jobs=> jjj, resume=> rrr,  services => bbb, , gigs => ggg,
+typeOfSearch =["sss", "hhh", "jjj", "rrr", "bbb", "ggg"]
+item = "5 bedroom"
+location = "vancouver"
+postal = "v3j2s1"
+max_price = "2200"
+min_price = "500"
+radius = "5"
+min_bedrooms = "&min_bedrooms=3"
+
+scrapper = CraigslistScrapper(location, item,"","", max_price,min_price, areas[0], typeOfSearch[1])
+
+scrapper.load_craigslist_url()
+titles, prices, dates = scrapper.extract_post_information()
+print(titles)
+# scrapper.extract_post_urls()
+# scrapper.quit()
+
+
+
+
+
+
+
+
+
+
